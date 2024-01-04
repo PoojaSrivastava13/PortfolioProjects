@@ -5,25 +5,6 @@ select * from PortfolicProject.nashvillehousing;
 update PortfolicProject.nashvillehousing SET SaleDate = STR_TO_DATE(SaleDate, '%M %d,%Y');
 select SaleDate from PortfolicProject.nashvillehousing;
 
--- Populate Property Address Data
-
-select * from PortfolicProject.nashvillehousing;
-
-select a.parcelID,a.propertyaddress,b.parcelID, b.PropertyAddress,ifnull(a.propertyaddress,b.propertyaddress) 
-from PortfolicProject.nashvillehousing a
-join PortfolicProject.nashvillehousing b
-on a.ParcelID=b.ParcelID and
-a.UniqueID != b.UniqueID
-where a.PropertyAddress is null;
-
-update a
-set a.PropertyAddress=ifnull(a.propertyaddress,b.propertyaddress) 
-from PortfolicProject.nashvillehousing a
-join PortfolicProject.nashvillehousing b
-on a.ParcelID=b.ParcelID and
-a.UniqueID != b.UniqueID
-where a.PropertyAddress is null;
-
 -- Breaking PropertyAddress and OwnerAddress into individual columns of Address,city and state
 
 select * from PortfolicProject.nashvillehousing;
